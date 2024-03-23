@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "CommitMono", system-ui, sans-serif;
+  }
+  @font-face {
+    font-family: 'CommitMono';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/fonts/CommitMono-400-Regular.woff2) format('woff2');
+  }
+  @font-face {
+    font-family: 'CommitMono';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/fonts/CommitMono-400-Italic.woff2) format('woff2');
+  }
+  @font-face {
+    font-family: 'CommitMono';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(/fonts/CommitMono-700-Regular.woff2) format('woff2');
+  }
+  @font-face {
+    font-family: 'CommitMono';
+    font-style: italic;
+    font-weight: 700;
+    font-display: swap;
+    src: url(/fonts/CommitMono-700-Italic.woff2) format('woff2');
+  }
+}
