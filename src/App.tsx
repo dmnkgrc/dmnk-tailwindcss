@@ -1,35 +1,47 @@
 import { tv } from "tailwind-variants";
+import { GitHubIcon } from "./assets/GitHub";
 
 const baseStyles = tv({
 	slots: {
-		pageContainer: "w-full flex flex-row justify-center",
+		pageContainer:
+			"w-full flex flex-col h-screen overflow-y-hidden  bg-sumiInk-300 text-fujiWhite",
+		header: "flex flex-row space-x-3 px-6 h-12 items-center text-crystalBlue",
 		pageContent:
-			"w-full max-w-screen-lg py-10 bg-gray-100/75 h-screen overflow-y-auto px-6 flex flex-col space-y-6",
-		title: "text-4xl text-center",
+			"w-full relative h-[calc(100vh - 96px)] overflow-y-auto pr-6 pl-20 flex flex-col flex-1 space-y-6",
+		sidebar: "absolute left-0 bg-sumiInk-400 w-16 h-full overflow-y-hidden",
+		lineNumber: "text-right pr-2 text-sumiInk-700",
+		title: "text-lg",
 		avatarContainer: "flex flex-row justify-center",
-		avatar: "w-24 h-24 rounded-full hover:scale-150 transition-all hover:my-4",
+		avatar: "w-8 h-8 rounded-full hover:scale-150 transition-all hover:my-4",
 		list: "py-4 list-disc list-inside",
+		footer: "flex flex-row space-x-3 h-8 items-center bg-sumiInk-500",
+		githubLink:
+			"bg-crystalBlue relative items-center text-md overflow-visible z-10 flex flex-row space-x-1 h-full text-sumiInk-400 before:absolute before:h-6 before:w-6 before:top-1 before:rotate-45 before:-right-2.5 before:bg-crystalBlue before:-z-10",
+		githubIcon: "h-6 w-6",
 	},
 });
 
 function App() {
 	const styles = baseStyles();
+	const numberOfLines = Array(100).fill(1);
 	return (
 		<div className={styles.pageContainer()}>
-			<div className={styles.pageContent()}>
+			<div className={styles.header()}>
+				<img
+					alt="GitHub Avatar"
+					src="https://avatars.githubusercontent.com/u/4812676?v=4"
+					className={styles.avatar()}
+				/>
 				<h1 className={styles.title()}>Dominik Garcia Bertapelle</h1>
-				<a
-					className={styles.avatarContainer()}
-					href="https://github.com/dmnkgrc"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<img
-						alt="GitHub Avatar"
-						src="https://avatars.githubusercontent.com/u/4812676?v=4"
-						className={styles.avatar()}
-					/>
-				</a>
+			</div>
+			<div className={styles.pageContent()}>
+				<div className={styles.sidebar()}>
+					{numberOfLines.map((_, index) => (
+						<div className={styles.lineNumber()} key={index.toString()}>
+							{index + 1}
+						</div>
+					))}
+				</div>
 				<p>
 					I am a Staff Software Engineer focused mostly in the Frontend and the
 					tooling around it. I have been coding since I am 12 years old, it
@@ -120,6 +132,17 @@ function App() {
 						you’ve worked on.
 					</li>
 				</ul>
+			</div>
+			<div className={styles.footer()}>
+				<a
+					className={styles.githubLink()}
+					href="https://github.com/dmnkgrc"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<GitHubIcon className={styles.githubIcon()} />
+					<span>GitHub</span>
+				</a>
 			</div>
 		</div>
 	);
